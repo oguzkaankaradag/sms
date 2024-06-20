@@ -4,6 +4,7 @@ package com.example.springBootTesting.controller;
 import com.example.springBootTesting.model.Student;
 import com.example.springBootTesting.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,7 @@ public class StudentController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.OK)
     public Student createStudent(@RequestBody Student student) {
         return studentService.createStudent(student);
     }
@@ -36,6 +38,12 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<Void> deleteAllStudents() {
+        studentService.deleteAllStudents();
         return ResponseEntity.noContent().build();
     }
 }

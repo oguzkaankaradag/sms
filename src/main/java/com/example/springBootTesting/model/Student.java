@@ -2,9 +2,11 @@ package com.example.springBootTesting.model;
 
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 @Entity
 @Table(name = "students")
+@Builder
 public class Student {
 
     @Id
